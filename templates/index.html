@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f7fc">
+  <title>Email Spam Detection System</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="EmailGuard home"><span class="brand-icon">✉</span><span>Email<span class="brand-accent">Guard</span></span></a>
+    <nav aria-label="Main navigation"><a href="#home">Home</a><a href="#checker">Check Email</a><a href="#about">About</a></nav>
+    <a class="header-link" href="#checker">Try the checker <span>↗</span></a>
+  </header>
+
+  <main>
+    <section class="hero wrap" id="home">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="live-dot"></span> MACHINE LEARNING · EMAIL SECURITY</p>
+        <h1>Email Spam<br><span>Detection System</span></h1>
+        <h2>Machine Learning Based Email Classification</h2>
+        <p class="intro">An AI-powered system that uses machine learning to classify emails as Spam or Ham. Analyze a message and see the prediction from your trained model.</p>
+        <a class="primary-link" href="#checker">Check an Email <span>→</span></a>
+        <p class="hero-note">Your message is analyzed by the existing classifier.</p>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="orbit orbit-outer"></div><div class="orbit orbit-inner"></div>
+        <div class="mail-card"><div class="mail-top"><span>✉</span><b>•••</b></div><div class="mail-line wide"></div><div class="mail-line"></div><div class="mail-line short"></div><div class="scan-line"></div><div class="shield">✓</div><small>SECURITY SCAN</small></div>
+        <div class="float-tag tag-top">✳ &nbsp; ML powered</div><div class="float-tag tag-bottom">✓ &nbsp; Inbox protection</div>
+      </div>
+      <div class="feature-grid">
+        <article class="feature-card"><span class="feature-icon spam-icon">!</span><div><h3>Spam Detection</h3><p>Identify unwanted or suspicious mail.</p></div><span class="feature-arrow">↗</span></article>
+        <article class="feature-card"><span class="feature-icon ham-icon">✓</span><div><h3>Ham Detection</h3><p>Recognize normal, legitimate email.</p></div><span class="feature-arrow">↗</span></article>
+        <article class="feature-card"><span class="feature-icon ml-icon">✳</span><div><h3>Machine Learning</h3><p>Uses your existing trained model.</p></div><span class="feature-arrow">↗</span></article>
+      </div>
+    </section>
+
+    <section class="checker wrap" id="checker">
+      <div class="section-heading"><div><p class="eyebrow">THE CLASSIFIER</p><h2>Check an email</h2><p>Paste the message content below to analyze it with the ML model.</p></div><span class="step-label"><b>01</b> / CLASSIFY</span></div>
+      <form id="email-form" class="input-card" novalidate>
+        <div class="input-top"><label for="email-text">Email message</label><button id="clear-button" class="clear-button" type="button">Clear <span>×</span></button></div>
+        <textarea id="email-text" maxlength="10000" placeholder="Paste your email message here..." aria-describedby="character-count" required></textarea>
+        <div class="input-meta"><span id="character-count">0 / 10,000 characters</span><span class="privacy-note">Text is sent to the local classifier for analysis.</span></div>
+        <div id="error-message" class="error-message" role="alert" hidden></div>
+        <button id="check-button" class="check-button" type="submit"><span>Check Email</span><b>→</b></button>
+        <p id="loading-message" class="loading-message" role="status" hidden><span class="spinner"></span> Analyzing Email...</p>
+      </form>
+    </section>
+
+    <section id="result-section" class="results wrap" aria-live="polite" hidden>
+      <article id="result-card" class="result-card">
+        <div class="result-heading"><span id="result-icon" class="result-icon"></span><div class="result-copy"><p class="eyebrow">ANALYSIS RESULT</p><h2 id="result-title"></h2><p id="result-description"></p></div><span id="result-status" class="result-status"></span></div>
+        <div class="confidence"><div class="confidence-label"><span>Model confidence</span><strong id="confidence-value"></strong></div><div class="progress-track" role="progressbar" aria-label="Prediction confidence" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="confidence-bar" class="progress-fill"></span></div><small>Confidence reported by the existing model.</small></div>
+      </article>
+      <div class="details-grid"><article class="detail-card"><h3><span>▤</span> Analyzed email</h3><p id="analyzed-email" class="analyzed-email"></p></article><article class="detail-card"><h3><span>◎</span> Prediction summary</h3><div class="summary-row"><span>Prediction</span><strong id="summary-prediction"></strong></div><div class="summary-row"><span>Confidence</span><strong id="summary-confidence"></strong></div><div class="summary-row"><span>Status</span><strong id="summary-status"></strong></div></article></div>
+      <button id="another-button" class="another-button" type="button">← Check Another Email</button>
+    </section>
+
+    <section class="about wrap" id="about"><span class="about-mark">i</span><div><p class="eyebrow">ABOUT THE PROJECT</p><h2>Machine learning, made accessible.</h2><p>This interface sends email text to a Flask API, which uses the existing trained model and its matching vectorizer to return a real Spam or Ham prediction.</p></div><span class="about-tag">Flask API · ML classifier</span></section>
+  </main>
+  <footer>Email Spam Detection System <span>·</span> Machine Learning FYP</footer>
+</body>
+</html>
